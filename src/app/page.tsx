@@ -3,16 +3,16 @@ import Link from "next/link";
 
 export default async function Home() {
   // const postData = await Prisma.post.findMany({
-  // where: {
-  //   createdAt: {
-  //     gt: new Date("2024-07-31"),
+  //   where: {
+  //     createdAt: {
+  //       gt: new Date("2024-07-31"),
+  //     },
   //   },
-  // },
-  // select: {
-  //   title: true,
-  //   createdAt: true,
-  //   id: true,
-  // },
+  //   select: {
+  //     title: true,
+  //     createdAt: true,
+  //     id: true,
+  //   },
   // });
 
   // const postCount = await Prisma.post.count();
@@ -26,9 +26,12 @@ export default async function Home() {
     <>
       <h1 className="text-3xl font-bold">Post List Page {query2}</h1>
 
-      <button className="mt-5 inline-block px-3 py-2 bg-blue-500 text-white rounded">
+      <Link
+        href="/create"
+        className="mt-5 inline-block px-3 py-2 bg-blue-500 text-white rounded"
+      >
         Create
-      </button>
+      </Link>
 
       <ul className="flex flex-col gap-3 my-10">
         {query1.map(({ createdAt, id, title }) => (

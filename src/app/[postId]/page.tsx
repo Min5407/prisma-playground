@@ -1,5 +1,7 @@
 import Prisma from "@/lib/prisma/db";
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import DeleteBtn from "./delete_btn";
 
 const PostDetailPage = async ({ params }: { params: { postId: string } }) => {
   const post = await Prisma.post.findUnique({
@@ -11,8 +13,10 @@ const PostDetailPage = async ({ params }: { params: { postId: string } }) => {
   if (!post) redirect("/");
 
   return (
-    <div>
+    <>
       <h1 className="text-3xl font-bold">{post?.title}</h1>
+      <Link href={`/edit/${params.postId}`}>Edit Post</Link>
+      <DeleteBtn />
 
       <p className="my-5 font-semibold">{post?.content}</p>
 
@@ -22,7 +26,7 @@ const PostDetailPage = async ({ params }: { params: { postId: string } }) => {
       <span className="block text-slate-600">
         Updated: {post?.updatedAt.toDateString()}
       </span>
-    </div>
+    </>
   );
 };
 

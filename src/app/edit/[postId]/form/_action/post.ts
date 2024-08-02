@@ -41,6 +41,7 @@ export const upsertPostAction = async (
     create: {
       title,
       content,
+      authorId: "clzci3qwq0000qo0q3ocgn37x",
     },
   });
 

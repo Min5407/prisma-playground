@@ -17,14 +17,31 @@ export default async function Home() {
 
   // const postCount = await Prisma.post.count();
 
-  const [query1, query2] = await Promise.all([
-    Prisma.post.findMany(),
-    Prisma.post.count(),
-  ]);
+  // const [query1, query2] = await Promise.all([
+  //   Prisma.post.findMany(),
+  //   Prisma.post.count(),
+  // ]);
+
+  // const userPost = await Prisma.user.findUnique({
+  //   where: {
+  //     email: "test@test.com",
+  //   },
+  //   include: {
+  //     post: true,
+  //   },
+  // });
+
+  const post = await Prisma.post.findMany({
+    where: {
+      author: {
+        email: "test@test.com",
+      },
+    },
+  });
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Post List Page {query2}</h1>
+      <h1 className="text-3xl font-bold">Post List Page {post.length}</h1>
 
       <Link
         href="/create"
@@ -34,7 +51,7 @@ export default async function Home() {
       </Link>
 
       <ul className="flex flex-col gap-3 my-10">
-        {query1.map(({ createdAt, id, title }) => (
+        {post.map(({ createdAt, id, title }) => (
           <Link href={`/${id}`} key={id}>
             <li className="flex gap-3 flex-col">
               <span>{title}</span>

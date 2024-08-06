@@ -15,6 +15,7 @@ const Form = ({ children }: Props) => {
 
     await createPostAction(title, content);
   };
+
   return (
     <form className="my-5 w-[800px]" onSubmit={handleCreatePost}>
       {children}

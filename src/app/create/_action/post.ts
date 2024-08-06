@@ -8,7 +8,11 @@ export const createPostAction = async (title: string, content: string) => {
     data: {
       title,
       content,
-      authorId: "clzci3qwq0000qo0q3ocgn37x",
+      author: {
+        connect: {
+          email: "test@test.com",
+        },
+      },
     },
   });
 

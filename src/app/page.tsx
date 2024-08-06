@@ -34,7 +34,7 @@ export default async function Home() {
   const post = await Prisma.post.findMany({
     where: {
       author: {
-        email: "test@test.com",
+        email: "bob@test.com",
       },
     },
   });
